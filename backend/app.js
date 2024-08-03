@@ -19,6 +19,11 @@ app.use(cors({
   methods: ["GET", "POST", "PUT", "DELETE"],
 }));
 
+const userRoutes = require('./routes/user-route');
+
+app.use('/api', userRoutes);
+
+
 app.get("/", (req, res) => 
   res.send(`<h1> Site is working, click <a href="${process.env.FRONTEND_URL}">here</a> to visit frontend.</h1>`)
 );
