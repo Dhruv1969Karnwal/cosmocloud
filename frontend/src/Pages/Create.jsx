@@ -1,7 +1,9 @@
 import { useState } from 'react';
-// import axios from 'axios'; // Import axios for making HTTP requests
+import axios from 'axios';
+import {useNavigate} from "react-router-dom"
 
 const Create = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -24,9 +26,11 @@ const Create = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-    //   const response = await axios.post('/your-backend-endpoint', formData);
+      const response = await axios.post('http://127.0.0.1:9090/api/create-user', formData);
       // Handle success (e.g., show a message or redirect)
-      console.log('Form submitted successfully:', formData);
+      // console.log('Form submitted successfully:', response.data.data);
+      // alert('Success');
+      navigate("/");
     } catch (error) {
       // Handle error (e.g., show an error message)
       console.error('Form submission error:', error);

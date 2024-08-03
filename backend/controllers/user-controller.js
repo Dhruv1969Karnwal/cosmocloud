@@ -1,4 +1,4 @@
-const User = require('../models/user-model');
+const {User} = require('../models/user-model');
 
 // Create a new user
 const createUser = async (req, res) => {
@@ -23,6 +23,7 @@ const createUser = async (req, res) => {
 const getAllUsers = async (req, res) => {
   try {
     const users = await User.find();
+    console.log("users:  ",users)
     res.status(200).json({
       success: true,
       data: users,

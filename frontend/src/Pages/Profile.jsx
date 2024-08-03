@@ -1,10 +1,39 @@
 // import React from 'react'
+import { useEffect, useState } from "react";
 import { IoIosArrowBack } from "react-icons/io";
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 
 const Profile = () => {
+
+  const {id} = useParams();
+  // console.log(id);
+
+  const navigate = useNavigate()
+  const [data,setData] = useState();
+  const go_to_home_page = async () => {
+    navigate("/");
+  }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`/api/users/${id}`);
+        console.log('Data fetched:', response.data.data);
+        setData(response.data.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // console.log(data);
+
   return (
     <>
-    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded absolute top-5 left-5">
+    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded absolute top-5 left-5" onClick={go_to_home_page}>
     <IoIosArrowBack /> 
     </button>
       <div className=" h-screen flex justify-center items-center">
@@ -22,7 +51,7 @@ const Profile = () => {
               <div className="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                 <dt className="text-sm font-medium text-gray-500">Full name</dt>
                 <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  John Doe
+                  {data?.firstName} {data?.lastName}
                 </dd>
               </div>
               <div className="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -30,7 +59,7 @@ const Profile = () => {
                   Email address
                 </dt>
                 <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  johndoe@example.com
+                  {data?.email}
                 </dd>
               </div>
               <div className="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -38,15 +67,15 @@ const Profile = () => {
                   Phone number
                 </dt>
                 <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  (123) 456-7890
+                  {data?.phoneNumber}
                 </dd>
               </div>
               <div className="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                 <dt className="text-sm font-medium text-gray-500">Address</dt>
                 <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  123 Main St
+                  {data?.address} 
                   <br />
-                  Anytown, USA 12345
+                  {data?.city}, {data?.state} {data?.zipCode}
                 </dd>
               </div>
             </dl>
