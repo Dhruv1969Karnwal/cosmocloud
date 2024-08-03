@@ -18,7 +18,7 @@ const Profile = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`/api/users/${id}`);
+        const response = await axios.get(`https://cosmocloud-backend-sb4a.onrender.com/api/users/${id}`);
         console.log('Data fetched:', response.data.data);
         setData(response.data.data);
       } catch (error) {

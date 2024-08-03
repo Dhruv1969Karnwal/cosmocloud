@@ -26,7 +26,7 @@ const Create = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/api/create-user', formData);
+      const response = await axios.post('https://cosmocloud-backend-sb4a.onrender.com/api/create-user', formData);
 
       navigate("/");
     } catch (error) {
