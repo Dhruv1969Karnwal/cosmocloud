@@ -23,6 +23,8 @@ const userRoutes = require('./routes/user-route');
 
 app.use('/api', userRoutes);
 
+console.log(process.env.FRONTEND_URL)
+
 
 app.get("/", (req, res) => 
   res.send(`<h1> Site is working, click <a href="${process.env.FRONTEND_URL}">here</a> to visit frontend.</h1>`)

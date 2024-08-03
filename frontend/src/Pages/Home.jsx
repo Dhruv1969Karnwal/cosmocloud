@@ -10,7 +10,7 @@ const Home = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('/api/users');
+        const response = await axios.get('https://cosmocloud-backend-sb4a.onrender.com/api/users');
         console.log('Data fetched:', response.data.data);
         setData(response.data.data);
       } catch (error) {
