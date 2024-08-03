@@ -26,13 +26,10 @@ const Create = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://127.0.0.1:9090/api/create-user', formData);
-      // Handle success (e.g., show a message or redirect)
-      // console.log('Form submitted successfully:', response.data.data);
-      // alert('Success');
+      const response = await axios.post('/api/create-user', formData);
+
       navigate("/");
     } catch (error) {
-      // Handle error (e.g., show an error message)
       console.error('Form submission error:', error);
     }
   };
