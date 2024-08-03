@@ -19,16 +19,6 @@ app.use(cors({
   methods: ["GET", "POST", "PUT", "DELETE"],
 }));
 
-// app.use(cors({
-//   origin: '*',
-//   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-// }));
-
-
-
-console.log('Frontend URL:', process.env.FRONTEND_URL);
-
-
 const userRoutes = require('./routes/user-route');
 
 app.use('/api', userRoutes);
