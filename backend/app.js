@@ -14,7 +14,7 @@ app.use(
 );
 app.use(cookieParser());
 app.use(cors({
-  origin: process.env.FRONTEND_URL,
+  origin: '*',
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE"],
 }));
@@ -23,7 +23,7 @@ const userRoutes = require('./routes/user-route');
 
 app.use('/api', userRoutes);
 
-console.log(process.env.FRONTEND_URL)
+// console.log(process.env.FRONTEND_URL)
 
 
 app.get("/", (req, res) => 
